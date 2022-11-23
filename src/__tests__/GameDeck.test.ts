@@ -12,6 +12,8 @@ describe('GameDeck Class', ()=>{
         const testGameDeck = new GameDeck([...controlCards]);
         const shuffledCards = testGameDeck.shuffle();
         const shufledCardsValues = shuffledCards.map(x => x.value);
+        console.log('----------------------')
+        console.log(shufledCardsValues)
         expect(shufledCardsValues).not.toEqual(controlCardValues);
     });
     it('should return top two cards', () => {
