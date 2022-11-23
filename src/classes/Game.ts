@@ -11,15 +11,9 @@ export class Game {
     this.gameDeck = new GameDeck(newCards);
     this.player1 = player1;
     this.player2 = player2;
-    this.setUp();
   }
 
-  private setUp(): void {
-    this.gameDeck.shuffle();
-    this.dealCards();
-  }
-
-  private dealCards(): void {
+  dealCards(): void {
     let arrayOfPlayers = [this.player1, this.player2];
     let handSize = Math.floor(this.gameDeck.numberOfCards / 2);
     for (const player of arrayOfPlayers) {
@@ -27,7 +21,7 @@ export class Game {
     }
   }
 
-  startGame(): void {
+  startGame(): string {
     let roundCounter = 1;
     let numberOfRounds = this.player1.hand.numberOfCards;
     while (numberOfRounds) {
@@ -37,6 +31,7 @@ export class Game {
     }
     let winnerName = this.determineFinalWinner();
     this.drawFinalWinner(winnerName);
+    return winnerName;
   }
 
   playRound(roundCounter: number): string {

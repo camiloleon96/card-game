@@ -12,11 +12,13 @@ function createCards(numberOfCards: number) {
 }
 
 //create cards
-const NUMBER_OF_CARDS = 30;
+const NUMBER_OF_CARDS = 52;
 const newcards = createCards(NUMBER_OF_CARDS);
-//instantiate player
+//initialize player
 const player1 = new Player("Pipo", new PlayerDeck([]));
 const player2 = new Player("Milo", new PlayerDeck([]));
-//instantiate Game
+//initialize Game
 const myGame = new Game(player1, player2, newcards);
+myGame.gameDeck.shuffle();
+myGame.dealCards();
 myGame.startGame();
