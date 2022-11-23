@@ -27,4 +27,37 @@ export class Game {
       player.hand.pushCards(this.gameDeck.takeCards(handSize));
     }
   }
+
+  playRound(roundCounter: number): string {
+    const topCardP1 = this.player1.hand.useTopCard;
+    const topCardP2 = this.player2.hand.useTopCard;
+    let roundWinner = "";
+
+    const winnerCard = topCardP1?.compare(topCardP2);
+    if (winnerCard === 1) {
+      roundWinner = this.player1.name;
+      this.player1.addPoints();
+    } else if (winnerCard === -1) {
+      roundWinner = this.player2.name;
+      this.player2.addPoints();
+    } else {
+      roundWinner = "DRAW";
+    }
+
+    console.log(`\n-------------round: ${roundCounter}----------------`);
+    //Draw player's card
+    console.log(this.player1.name);
+    console.log(topCardP1?.draw());
+    console.log("\n");
+    console.log(this.player2.name);
+    console.log(topCardP2?.draw());
+    //Draw the winner
+    console.log(`\n   Round Winner: ${roundWinner}`);
+    //Draw players points
+    console.log();
+    console.log(`${this.player1.name} -> points:${this.player1.totalPoints}`);
+    console.log(`${this.player2.name} -> points:${this.player2.totalPoints}`);
+
+    return roundWinner;
+  }
 }

@@ -5,10 +5,10 @@ export class Card {
     this.value = value;
   }
 
-  compare(rivalCard: Card): number {
-    if (this.value > rivalCard.value) {
+  compare(rivalCard: Card| undefined): number {
+    if (this.value > (rivalCard?.value ?? 0)) {
       return 1;
-    } else if (this.value < rivalCard.value) {
+    } else if (this.value < (rivalCard?.value ?? 0)) {
       return -1;
     } else {
       return 0;
