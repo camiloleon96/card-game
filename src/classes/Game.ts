@@ -17,5 +17,14 @@ export class Game {
 
   private setUp(): void {
     this.gameDeck.shuffle();
+    this.dealCards();
+  }
+
+  private dealCards(): void {
+    let arrayOfPlayers = [this.player1, this.player2];
+    let handSize = Math.floor(this.gameDeck.numberOfCards / 2);
+    for (const player of arrayOfPlayers) {
+      player.hand.pushCards(this.gameDeck.takeCards(handSize));
+    }
   }
 }
