@@ -11,14 +11,19 @@ function createCards(numberOfCards: number) {
   return newDeck;
 }
 
-//create cards
-const NUMBER_OF_CARDS = 52;
-const newcards = createCards(NUMBER_OF_CARDS);
-//initialize player
-const player1 = new Player("Pipo", new PlayerDeck([]));
-const player2 = new Player("Milo", new PlayerDeck([]));
-//initialize Game
-const myGame = new Game(player1, player2, newcards);
-myGame.gameDeck.shuffle();
-myGame.dealCards();
-myGame.startGame();
+try {
+  //create cards
+  const NUMBER_OF_CARDS = 52;
+  const newcards = createCards(NUMBER_OF_CARDS);
+  //initialize player
+  const player1 = new Player("Pipo", new PlayerDeck([]));
+  const player2 = new Player("Milo", new PlayerDeck([]));
+  //initialize Game
+  const myGame = new Game(player1, player2, newcards);
+  myGame.gameDeck.shuffle();
+  myGame.dealCards();
+  myGame.startGame();
+  
+} catch (error) {
+  console.error(error);
+}

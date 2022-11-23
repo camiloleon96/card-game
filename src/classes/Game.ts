@@ -9,6 +9,7 @@ export class Game {
 
   constructor(player1: Player, player2: Player, newCards: Card[]) {
     this.gameDeck = new GameDeck(newCards);
+    if(this.gameDeck.numberOfCards !== 52) throw Error('The number of cards must be 52!!');
     this.player1 = player1;
     this.player2 = player2;
   }
