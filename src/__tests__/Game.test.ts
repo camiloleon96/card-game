@@ -4,7 +4,7 @@ import { PlayerDeck } from "../classes/PlayerDeck";
 import { Card } from "../classes/Card";
 
 const cards: Card[] = [];
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 52; i++) {
   console.log(i);
   cards.push(new Card(i));
 }
