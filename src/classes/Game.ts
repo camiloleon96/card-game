@@ -28,18 +28,34 @@ export class Game {
     }
   }
 
+  startGame(): void {
+    let roundCounter = 1;
+    let numberOfRounds = this.player1.hand.numberOfCards;
+    while (numberOfRounds) {
+      this.playRound(roundCounter);
+      roundCounter++;
+      numberOfRounds--;
+    }
+    let winnerName = this.determineFinalWinner();
+    this.drawFinalWinner(winnerName);
+  }
+
   playRound(roundCounter: number): string {
     const topCardP1 = this.player1.hand.useTopCard;
     const topCardP2 = this.player2.hand.useTopCard;
     let roundWinner = "";
+    let isPlayer1TheWinner = '';
+    let isPlayer2TheWinner = '';
 
     const winnerCard = topCardP1?.compare(topCardP2);
     if (winnerCard === 1) {
       roundWinner = this.player1.name;
       this.player1.addPoints();
+      isPlayer1TheWinner = '🥇';
     } else if (winnerCard === -1) {
       roundWinner = this.player2.name;
       this.player2.addPoints();
+      isPlayer2TheWinner = '🥇';
     } else {
       roundWinner = "DRAW";
     }
@@ -48,16 +64,37 @@ export class Game {
     //Draw player's card
     console.log(this.player1.name);
     console.log(topCardP1?.draw());
+    console.log(`              ${isPlayer1TheWinner}`);
     console.log("\n");
     console.log(this.player2.name);
     console.log(topCardP2?.draw());
+    console.log(`              ${isPlayer2TheWinner}`);
+
     //Draw the winner
-    console.log(`\n   Round Winner: ${roundWinner}`);
+    console.log(`\n   Round Winner: ${roundWinner} !`);
     //Draw players points
-    console.log();
-    console.log(`${this.player1.name} -> points:${this.player1.totalPoints}`);
+    console.log(`\n${this.player1.name} -> points:${this.player1.totalPoints}`);
     console.log(`${this.player2.name} -> points:${this.player2.totalPoints}`);
 
     return roundWinner;
+  }
+
+  determineFinalWinner(): string {
+    if (this.player1.totalPoints > this.player2.totalPoints) {
+      return this.player1.name;
+    } else if (this.player1.totalPoints === this.player2.totalPoints) {
+      return "DRAW";
+    } else {
+      return this.player2.name;
+    }
+  }
+
+  drawFinalWinner(name: string): void {
+    console.log("\n\n  ============✨FINAL WINNER✨============");
+    console.log(`               🏆 ${name} 🏆`);
+    console.log('Final Results:');
+    console.log(`\n${this.player1.name} -> points:${this.player1.totalPoints}`);
+    console.log(`${this.player2.name} -> points:${this.player2.totalPoints}`);
+
   }
 }

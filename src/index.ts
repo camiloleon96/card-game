@@ -9,7 +9,8 @@ function createCards(numberOfCards: number) {
   return newDeck;
 }
 
-const NUMBER_OF_CARDS = 2;
+const NUMBER_OF_CARDS = 30;
 const newcards = createCards(NUMBER_OF_CARDS);
 const myGame = new Game("Pipo", "Milo", newcards);
-myGame.playRound(1);
+
+myGame.startGame();
