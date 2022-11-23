@@ -9,10 +9,18 @@ export class Card {
   }
 
   draw(): string {
-    return `
-            ___
-           |   |
-           | ${this.value} |
-           |___|`;
+    if (this.value < 10) {
+      return `
+              ___
+             |*  |
+             | ${this.value} |
+             |___|`;
+    } else {
+      return `
+              ___
+             |*  |
+             | ${this.value}|
+             |___|`;
+    }
   }
 }
